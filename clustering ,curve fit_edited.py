@@ -39,8 +39,8 @@ def file(l):
     D = l[['Country Name','Indicator Code','Indicator Name','1990','1991','1992','1993','1994','1995',
            '1996','1997','1998','1999','2000','2001','2002','2003','2004',
            '2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']]
-   
-    return D
+    transpose = D.T
+    return D, transpose
 
 
 def mapping_function(x,a,b,c):
@@ -59,9 +59,14 @@ co2 = pd.read_csv('C:/Users/samkh/Desktop/applied 03/co2.csv',error_bad_lines=Fa
 
 #function call to call the files for further implementation
 
-gdp_df=file(gdp)
-co2_df=file(co2)
-co2_df.head(30)
+gdp_file=file(gdp)
+co2_file=file(co2)
+print(gdp_file)
+
+#as we donot need transposed version of file for our implementation,
+# so it will be ignored and original file with columns will be used from the function
+gdp_df = file(gdp)[0] # this method will help me to ignore the second return value of my function
+co2_df = file(co2)[0]  # because i donot want to work with transposed datafile
 
 #Clean up process Dataset for relavant information
 #using MEAN statistical function to fill NAN values witht the mean values
