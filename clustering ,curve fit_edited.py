@@ -30,7 +30,12 @@ from sklearn.preprocessing import MinMaxScaler
 from scipy.optimize import curve_fit
 from numpy import arange
 
-plt.style.use("ggplot")
+
+font = {'family' : 'normal',
+        'weight' : 'bold',
+        'size'   : 18}
+
+plt.rc('font', **font)
 
 #user defined functions used in the coding
 def file(l):
@@ -424,7 +429,7 @@ opt_param,covar = curve_fit(mapping_function,x,y)
 #summarize the parametric values
 a, b, c = opt_param
 #plot input v/s output
-plt.scatter(x, y, color='green',
+plt.plot(x, y, color='green',
            label='data')
 
 #defining the sequence of inputs between smallest and largest known inputs
@@ -453,7 +458,7 @@ forecast = mapping_function(year, *opt_param)
 print(forecast)
 
 plt.figure()
-plt.scatter(dfaus["years"], dfaus["gdp"], label="GDP")
+plt.plot(dfaus["years"], dfaus["gdp"], label="GDP")
 plt.plot(year, forecast, label="forecast",color='green')
 plt.title('curve fit functioning for next 10 years')
 plt.xlabel("year")
